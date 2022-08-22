@@ -5,11 +5,11 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     [SerializeField] float parryWindow = 0.325f;
-    [SerializeField] float parryRecovery = 0.8f;
+    [SerializeField] float parryCooldown = 0.8f;
     [SerializeField] AudioClip swordParrySound;
     private AudioSource audioSource;
     private SpriteRenderer sr;
-    private float timeSinceLastParry = Mathf.Infinity;
+    private float timeUntilCanParry = 0;
     public bool inParryMode { get; private set; }
 
     private void Awake()
@@ -23,15 +23,17 @@ public class Sword : MonoBehaviour
     {
         if (!inParryMode)
         {
-            timeSinceLastParry += Time.deltaTime;
+            timeUntilCanParry -= Time.deltaTime;
         }
         
-        if (Input.GetMouseButtonDown(1) && !inParryMode && timeSinceLastParry >= parryRecovery)
+        if (Input.GetMouseButtonDown(1) && !inParryMode && timeUntilCanParry <= 0)
         {
             inParryMode = true;
+            timeUntilCanParry = parryCooldown;
             StartCoroutine(Parry());
         }
     }
+
 
     private IEnumerator Parry()
     {
@@ -45,7 +47,11 @@ public class Sword : MonoBehaviour
         }
         inParryMode = false;
         sr.color = Color.white;
-        timeSinceLastParry = 0;
+    }
+
+    public void ResetParryCooldown()
+    {
+        timeUntilCanParry = 0;
     }
 
 }

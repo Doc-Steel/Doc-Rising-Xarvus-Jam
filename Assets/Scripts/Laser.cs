@@ -46,6 +46,7 @@ public class Laser : MonoBehaviour
             Sword sword = collision.gameObject.GetComponent<Sword>();
             if (sword.inParryMode)
             {
+                sword.ResetParryCooldown();
                 audioSource.PlayOneShot(laserDeflectSound);
                 ReflectLaserVelocity(collision);
                 UpdateLaserRotation();

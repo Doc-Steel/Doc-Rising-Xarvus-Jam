@@ -13,8 +13,29 @@ public class Laser : MonoBehaviour
         rb.velocity = transform.right * speed;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(this.gameObject);
+        if (collision.gameObject.CompareTag("Mirror"))
+        {
+            ReflectLaserVelocity(collision);
+            UpdateLaserRotation();
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void UpdateLaserRotation()
+    {
+        var headingChange = Quaternion.FromToRotation(transform.right, rb.velocity.normalized);
+        transform.localRotation *= headingChange;
+    }
+
+    private void ReflectLaserVelocity(Collision2D collision)
+    {
+        var speed = rb.velocity.magnitude;
+        Vector2 reflectedDirection = Vector2.Reflect(rb.velocity.normalized, collision.GetContact(0).normal);
+        rb.velocity = reflectedDirection * speed;
     }
 }

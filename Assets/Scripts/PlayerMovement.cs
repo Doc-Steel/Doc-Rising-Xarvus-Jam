@@ -8,12 +8,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speed = 10f;
     [SerializeField] float armLength = 1f;
     [SerializeField] Transform shoulderPivot;
-    [SerializeField] GameObject mirror;
+    [SerializeField] GameObject sword;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        shoulderPivot = mirror.transform.parent.transform;
+        shoulderPivot = sword.transform.parent.transform;
     }
 
     private void FixedUpdate()
@@ -31,21 +31,21 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         
-        SetMirrorPosition();
-        SetMirrorAngle();
+        SetSwordPosition();
+        SetSwordAngle();
     }
 
-    private void SetMirrorAngle()
+    private void SetSwordAngle()
     {
-        Vector3 relative = transform.InverseTransformPoint(mirror.transform.position);
+        Vector3 relative = transform.InverseTransformPoint(sword.transform.position);
         float angle = Mathf.Atan2(relative.y, relative.x) * Mathf.Rad2Deg;
-        mirror.transform.eulerAngles = new Vector3(0, 0, angle);
+        sword.transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
-    private void SetMirrorPosition()
+    private void SetSwordPosition()
     {
         Vector3 shoulderToMouseDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - shoulderPivot.position;
         shoulderToMouseDirection.z = 0;
-        mirror.transform.position = shoulderPivot.position + (armLength * shoulderToMouseDirection.normalized);
+        sword.transform.position = shoulderPivot.position + (armLength * shoulderToMouseDirection.normalized);
     }
 }

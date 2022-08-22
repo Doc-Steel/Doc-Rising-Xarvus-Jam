@@ -6,6 +6,8 @@ public class Laser : MonoBehaviour
 {
     private Rigidbody2D rb;
     [SerializeField] float speed = 10f;
+    [SerializeField] float lifeTime = 10f;
+    private float timeAlive = 0;
 
     private void Awake()
     {
@@ -13,12 +15,37 @@ public class Laser : MonoBehaviour
         rb.velocity = transform.right * speed;
     }
 
+    private void Update()
+    {
+        timeAlive += Time.deltaTime;
+        if (timeAlive >= lifeTime)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Mirror"))
         {
-            ReflectLaserVelocity(collision);
-            UpdateLaserRotation();
+            Sword sword = collision.gameObject.GetComponent<Sword>();
+            if (sword.inParryMode)
+            {
+                ReflectLaserVelocity(collision);
+                UpdateLaserRotation();
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
         else
         {

@@ -234,6 +234,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &494397976 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3900846431692308284, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
+  m_PrefabInstance: {fileID: 1864931872}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &494397985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494397976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f331df55a33004ab2c1f5b24f3be5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parryWindow: 0.325
+  parryRecovery: 0.8
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,8 +534,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 494397979, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 494397979, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 494397979, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 494397979, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900846430482915122, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900846430482915122, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3900846430482915150, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900846430482915150, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3900846430482915151, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
@@ -563,5 +610,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3900846431692308284, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
+      propertyPath: m_Name
+      value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035144341980689023, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 494397976}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}

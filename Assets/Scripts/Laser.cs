@@ -7,6 +7,7 @@ public class Laser : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] float speed = 10f;
     [SerializeField] float lifeTime = 10f;
+    [SerializeField] float damage = 10;
     [SerializeField] AudioClip laserDeflectSound;
     [SerializeField] AudioClip laserHitSound;
     private SpriteRenderer sr;
@@ -35,6 +36,8 @@ public class Laser : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            Health playerHealth = collision.gameObject.GetComponent<Health>();
+            playerHealth.TakeDamage(damage);
             DestroyLaser();
         }
     }
@@ -53,6 +56,7 @@ public class Laser : MonoBehaviour
             }
             else
             {
+                sword.GetComponent<Health>().TakeDamage(damage);
                 DestroyLaser();
             }
         }

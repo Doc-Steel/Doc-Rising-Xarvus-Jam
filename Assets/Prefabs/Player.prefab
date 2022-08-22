@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6035144341980689023}
   - component: {fileID: 3900846430482915148}
   - component: {fileID: 1864931879}
+  - component: {fileID: 1864931880}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -109,6 +110,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3900846430482915150}
   m_Enabled: 1
+--- !u!114 &1864931880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3900846430482915150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd7a85ed07e29884abf6112003b8b2d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHealth: 100
+  iSeconds: 0.1
 --- !u!1 &3900846431027760655
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,5 +483,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parryWindow: 0.325
-  parryRecovery: 0.8
+  parryCooldown: 0.8
   swordParrySound: {fileID: 8300000, guid: bb263aba6bccbba488d8648e15e6bdce, type: 3}

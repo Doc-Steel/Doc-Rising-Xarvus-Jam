@@ -45,6 +45,7 @@ public class Sword : MonoBehaviour
         }
         inParryMode = false;
         sr.color = Color.white;
+        timeSinceLastParry = 0;
     }
 
 }

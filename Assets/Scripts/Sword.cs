@@ -6,6 +6,8 @@ public class Sword : MonoBehaviour
 {
     [SerializeField] float parryWindow = 0.325f;
     [SerializeField] float parryRecovery = 0.8f;
+    [SerializeField] AudioClip swordParrySound;
+    private AudioSource audioSource;
     private SpriteRenderer sr;
     private float timeSinceLastParry = Mathf.Infinity;
     public bool inParryMode { get; private set; }
@@ -13,6 +15,7 @@ public class Sword : MonoBehaviour
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
         sr.color = Color.white;
     }
 
@@ -32,6 +35,7 @@ public class Sword : MonoBehaviour
 
     private IEnumerator Parry()
     {
+        audioSource.PlayOneShot(swordParrySound);
         sr.color = Color.blue;
         float timer = 0;
         while (timer < parryWindow)

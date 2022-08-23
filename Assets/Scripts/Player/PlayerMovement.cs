@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] float speed = 10f;
+    [SerializeField] float jumpSpeed = 10f;
 
     [Header("Sword")]
     [SerializeField] Transform shoulderPivot;
@@ -34,7 +35,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+        }
         SetSwordPosition();
         SetSwordAngle();
     }

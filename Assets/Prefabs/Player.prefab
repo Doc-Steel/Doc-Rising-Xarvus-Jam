@@ -86,9 +86,9 @@ Rigidbody2D:
   m_Mass: 2
   m_LinearDrag: 3
   m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 5
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundMoveSpeed: 100
   airborneSlowFactor: 0.75
-  jumpSpeed: 40
+  jumpSpeed: 60
   groundCheck: {fileID: 313529225}
   groundLayer:
     serializedVersion: 2

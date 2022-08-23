@@ -127,8 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b5653fd35e8d14394ec0ba03be57b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 20
   lifeTime: 10
+  damage: 10
   laserDeflectSound: {fileID: 8300000, guid: 20d229f3d6de1e34fb92d9c66456ee1a, type: 3}
   laserHitSound: {fileID: 8300000, guid: f5ea48119e10767408636a473ee2b093, type: 3}
 --- !u!50 &5387030870636154460
@@ -148,7 +149,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -197,7 +198,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 0.3
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -249,7 +250,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.41111112
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

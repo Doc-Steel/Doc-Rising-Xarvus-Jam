@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 435996203}
   - component: {fileID: 435996205}
   - component: {fileID: 435996206}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -617,10 +617,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3900846430482915122, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
-      propertyPath: m_GravityScale
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3900846430482915150, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
       propertyPath: m_Name
       value: Player

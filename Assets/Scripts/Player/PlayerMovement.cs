@@ -5,8 +5,16 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] float speed = 10f;
+    [SerializeField] float groundMoveSpeed = 10f;
+    [SerializeField] float airborneSlowFactor = 0.75f;
     [SerializeField] float jumpSpeed = 10f;
+    private float speed;
+
+    [Header("Jump")]
+    [SerializeField] Transform groundCheck;
+    [SerializeField] LayerMask groundLayer;
+    [SerializeField] float groundCheckRadius;
+    private bool isGrounded;
 
     [Header("Sword")]
     [SerializeField] Transform shoulderPivot;
@@ -35,12 +43,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        SetGroundedStatus();
+        SetSpeed();
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
         }
         SetSwordPosition();
         SetSwordAngle();
+    }
+
+    private void SetSpeed()
+    {
+        speed = isGrounded ? groundMoveSpeed : groundMoveSpeed * airborneSlowFactor;
+    }
+
+    private void SetGroundedStatus()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
     }
 
     private void SetSwordAngle()
@@ -55,5 +75,11 @@ public class PlayerMovement : MonoBehaviour
         Vector3 shoulderToMouseDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - shoulderPivot.position;
         shoulderToMouseDirection.z = 0;
         sword.transform.position = shoulderPivot.position + (armLength * shoulderToMouseDirection.normalized);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 }

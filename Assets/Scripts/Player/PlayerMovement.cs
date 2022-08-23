@@ -18,7 +18,9 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Sword")]
     [SerializeField] Transform shoulderPivot;
-    [SerializeField] float armLength = 1f;
+    [SerializeField] float stationaryArmLength = 1.5f;
+    [SerializeField] float movingArmLength = 1.75f;
+    private float currentArmLength;
     [SerializeField] GameObject sword;
 
     Rigidbody2D rb;
@@ -26,7 +28,13 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        
+    }
+
+    private void Start()
+    {
         shoulderPivot = sword.transform.parent.transform;
+        currentArmLength = stationaryArmLength;
     }
 
     private void FixedUpdate()
@@ -72,9 +80,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetSwordPosition()
     {
+        AdjustArmLength();
         Vector3 shoulderToMouseDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - shoulderPivot.position;
         shoulderToMouseDirection.z = 0;
-        sword.transform.position = shoulderPivot.position + (armLength * shoulderToMouseDirection.normalized);
+        sword.transform.position = shoulderPivot.position + (currentArmLength * shoulderToMouseDirection.normalized);
+    }
+
+    private void AdjustArmLength()
+    {
+        if (rb.velocity.magnitude > 0.1 && currentArmLength < movingArmLength)
+        {
+            currentArmLength += Time.deltaTime;
+        }
+        if (rb.velocity.magnitude < 0.1 && currentArmLength > stationaryArmLength)
+        {
+            currentArmLength -= Time.deltaTime;
+        }
     }
 
     private void OnDrawGizmosSelected()

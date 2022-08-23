@@ -119,7 +119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 657265244940979196, guid: 33451b92048eb2140b92c8886c458a91, type: 3}
       propertyPath: m_Pivot.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 657265244940979196, guid: 33451b92048eb2140b92c8886c458a91, type: 3}
       propertyPath: m_Pivot.y
@@ -183,7 +183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 657265244940979196, guid: 33451b92048eb2140b92c8886c458a91, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -170
+      value: -270
       objectReference: {fileID: 0}
     - target: {fileID: 657265244940979196, guid: 33451b92048eb2140b92c8886c458a91, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -223,7 +223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 657265245211019953, guid: 33451b92048eb2140b92c8886c458a91, type: 3}
       propertyPath: m_Type
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 657265245211019953, guid: 33451b92048eb2140b92c8886c458a91, type: 3}
       propertyPath: m_Sprite
@@ -240,6 +240,10 @@ PrefabInstance:
     - target: {fileID: 657265245211019953, guid: 33451b92048eb2140b92c8886c458a91, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 657265245211019953, guid: 33451b92048eb2140b92c8886c458a91, type: 3}
+      propertyPath: m_FillMethod
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 657265245449636637, guid: 33451b92048eb2140b92c8886c458a91, type: 3}
       propertyPath: m_AnchorMax.x
@@ -393,7 +397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 657265244940979197, guid: 33451b92048eb2140b92c8886c458a91, type: 3}
       propertyPath: m_Value
-      value: 0.197
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 657265244940979197, guid: 33451b92048eb2140b92c8886c458a91, type: 3}
       propertyPath: m_Transition
@@ -437,7 +441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 657265245211019953, guid: 33451b92048eb2140b92c8886c458a91, type: 3}
       propertyPath: m_FillAmount
-      value: 0.197
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 657265245211019953, guid: 33451b92048eb2140b92c8886c458a91, type: 3}
       propertyPath: m_FillMethod

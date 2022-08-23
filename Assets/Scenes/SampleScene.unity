@@ -826,6 +826,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2509562301836375765, guid: 62aae4e9ed08d88439ff36734a72cead, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2509562301836375765, guid: 62aae4e9ed08d88439ff36734a72cead, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -922,12 +926,24 @@ PrefabInstance:
       value: HUD
       objectReference: {fileID: 0}
     - target: {fileID: 3156129281409778430, guid: 62aae4e9ed08d88439ff36734a72cead, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3156129281409778430, guid: 62aae4e9ed08d88439ff36734a72cead, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3156129281409778431, guid: 62aae4e9ed08d88439ff36734a72cead, type: 3}
+      propertyPath: m_FillAmount
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3156129281554908080, guid: 62aae4e9ed08d88439ff36734a72cead, type: 3}
       propertyPath: health
       value: 
       objectReference: {fileID: 494397991}
+    - target: {fileID: 3156129281554908083, guid: 62aae4e9ed08d88439ff36734a72cead, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62aae4e9ed08d88439ff36734a72cead, type: 3}

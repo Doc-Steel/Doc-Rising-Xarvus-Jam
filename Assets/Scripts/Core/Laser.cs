@@ -4,23 +4,36 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    [Header("Stats")]
     [SerializeField] float speed = 10f;
     [SerializeField] float lifeTime = 10f;
     [SerializeField] float damage = 10;
+
+    [Header("Audio")]
     [SerializeField] AudioClip laserDeflectSound;
     [SerializeField] AudioClip laserHitSound;
+
     private SpriteRenderer sr;
-    private float timeAlive = 0;
+    private Rigidbody2D rb;
     private AudioSource audioSource;
+    private float timeAlive = 0;
     private bool laserDestroyed = false;
 
     private void Awake()
     {
+        GetComponents();
+    }
+
+    private void Start()
+    {
+        rb.velocity = transform.right * speed;
+    }
+
+    private void GetComponents()
+    {
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
-        rb.velocity = transform.right * speed;
     }
 
     private void Update()

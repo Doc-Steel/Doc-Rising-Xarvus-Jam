@@ -73,8 +73,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  armLength: 1.5
   shoulderPivot: {fileID: 3900846431533219809}
+  armLength: 1.5
   sword: {fileID: 3900846431692308284}
 --- !u!61 &3900846430482915148
 BoxCollider2D:
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7a85ed07e29884abf6112003b8b2d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 100
+  <BaseHealth>k__BackingField: 50
   iSeconds: 0.1
 --- !u!1 &3900846431027760655
 GameObject:
@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 494397979}
   - component: {fileID: 494397986}
   - component: {fileID: 494397985}
+  - component: {fileID: 494397991}
   m_Layer: 3
   m_Name: Sword
   m_TagString: Mirror
@@ -484,4 +485,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parryWindow: 0.325
   parryCooldown: 0.8
+  energyRegenDelay: 3
   swordParrySound: {fileID: 8300000, guid: bb263aba6bccbba488d8648e15e6bdce, type: 3}
+  swordBreakSound: {fileID: 8300000, guid: 8dd052fbd2d0a2d448096ee4930a571d, type: 3}
+--- !u!114 &494397991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3900846431692308284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd7a85ed07e29884abf6112003b8b2d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <BaseHealth>k__BackingField: 50
+  iSeconds: 0.1

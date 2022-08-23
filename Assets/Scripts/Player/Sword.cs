@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
+    [Header("Stats")]
     [SerializeField] float parryWindow = 0.325f;
     [SerializeField] float parryCooldown = 0.8f;
-    [SerializeField] AudioClip swordParrySound;
     [SerializeField] float energyRegenDelay = 2f;
+
+    [Header("Audio")]
+    [SerializeField] AudioClip swordParrySound;
+    [SerializeField] AudioClip swordBreakSound;
+    
     private Health health;
     private BoxCollider2D col;
     private AudioSource audioSource;
     private SpriteRenderer sr;
     private float timeUntilCanParry = 0;
     public bool inParryMode { get; private set; }
+    public bool isBroken { get; private set; }
 
     private void OnEnable()
     {
@@ -27,11 +33,21 @@ public class Sword : MonoBehaviour
 
     private void Awake()
     {
+        GetComponents();
+    }
+
+    private void GetComponents()
+    {
         sr = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
         health = GetComponent<Health>();
         col = GetComponent<BoxCollider2D>();
+    }
+
+    private void Start()
+    {
         sr.color = Color.white;
+        isBroken = false;
     }
 
     private void OnSwordBreak()
@@ -46,7 +62,7 @@ public class Sword : MonoBehaviour
             timeUntilCanParry -= Time.deltaTime;
         }
         
-        if (Input.GetMouseButtonDown(1) && !inParryMode && timeUntilCanParry <= 0)
+        if (Input.GetMouseButtonDown(1) && !inParryMode && !isBroken && timeUntilCanParry <= 0)
         {
             inParryMode = true;
             timeUntilCanParry = parryCooldown;
@@ -76,7 +92,10 @@ public class Sword : MonoBehaviour
 
     private IEnumerator RegenerateSword()
     {
+        
         float timer = 0;
+        audioSource.PlayOneShot(swordBreakSound);
+        isBroken = true;
         sr.enabled = false;
         col.enabled = false;
         while (timer <= energyRegenDelay)
@@ -86,6 +105,7 @@ public class Sword : MonoBehaviour
         }
         sr.enabled = true;
         col.enabled = true;
+        isBroken = false;
         health.Regenerate();
     }
 

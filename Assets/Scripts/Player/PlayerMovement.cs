@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Rigidbody2D rb;
+    [Header("Movement")]
     [SerializeField] float speed = 10f;
-    [SerializeField] float armLength = 1f;
+
+    [Header("Sword")]
     [SerializeField] Transform shoulderPivot;
+    [SerializeField] float armLength = 1f;
     [SerializeField] GameObject sword;
+
+    Rigidbody2D rb;
 
     private void Awake()
     {

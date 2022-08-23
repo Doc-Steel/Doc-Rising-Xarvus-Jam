@@ -51,6 +51,7 @@ public class Health : MonoBehaviour
     {
         CurrentHealth = BaseHealth;
         IsDead = false;
+        changed?.Invoke();
     }
 
     private IEnumerator FlashCoroutine()

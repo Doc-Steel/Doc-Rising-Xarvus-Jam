@@ -526,6 +526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserPrefab: {fileID: 843466218355913472, guid: 407d614a80fab87499ca820fecf76302, type: 3}
+  holder: {fileID: 0}
   spawnRate: 0.75
 --- !u!4 &1408841318
 Transform:
@@ -1127,3 +1128,22 @@ PrefabInstance:
       objectReference: {fileID: 1792650392}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2204bca4c2e6364493fc7537ce06dab, type: 3}
+--- !u!1 &8094701031376073171 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6837938870034798824, guid: f2204bca4c2e6364493fc7537ce06dab, type: 3}
+  m_PrefabInstance: {fileID: 3365062617623832891}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8094701031376073177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8094701031376073171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd7a85ed07e29884abf6112003b8b2d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <BaseHealth>k__BackingField: 10
+  iSeconds: 0.1

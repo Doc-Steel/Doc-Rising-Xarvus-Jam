@@ -11,17 +11,31 @@ public class Enemy : MonoBehaviour
     [SerializeField] bool canFly;
     [SerializeField] float repeatRate = 0.5f;
     [SerializeField] Transform graphics;
+
     private Path path;
     private int currentWaypoint = 0;
     private bool reachedEndOfPath = false;
     private Seeker seeker;
     private Rigidbody2D rb;
+    private Health health;
     
 
     private void Awake()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<Health>();
+        health.died += OnDeath;
+    }
+
+    private void OnDisable()
+    {
+        health.died -= OnDeath;
+    }
+
+    private void OnDeath()
+    {
+        Destroy(this.gameObject);
     }
 
     private void Start()

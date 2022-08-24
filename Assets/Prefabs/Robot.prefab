@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &251499232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 251499233}
+  - component: {fileID: 251499234}
+  m_Layer: 10
+  m_Name: Lasercannon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &251499233
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251499232}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.6, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6837938870162551372}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &251499234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251499232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0c4e30c09c49144b9c742a67e652e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserPrefab: {fileID: 843466218355913472, guid: 407d614a80fab87499ca820fecf76302, type: 3}
+  holder: {fileID: 6837938870162551372}
+  spawnRate: 1
 --- !u!1 &6837938869118637122
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +57,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6837938869118637125}
   - component: {fileID: 6837938869118637124}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Robot Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +145,7 @@ GameObject:
   - component: {fileID: 6837938870034798831}
   - component: {fileID: 6837938870034798830}
   - component: {fileID: 8094701031376073176}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,8 +271,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6837938870162551372}
   - component: {fileID: 6837938870162551375}
-  m_Layer: 0
-  m_Name: er
+  m_Layer: 10
+  m_Name: LaserCannonHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,7 +289,8 @@ Transform:
   m_LocalPosition: {x: -0.54, y: 0.196, z: 0}
   m_LocalScale: {x: 1, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 251499233}
   m_Father: {fileID: 6837938869118637125}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

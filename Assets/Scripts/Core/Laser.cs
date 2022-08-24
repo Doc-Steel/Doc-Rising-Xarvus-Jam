@@ -13,14 +13,21 @@ public class Laser : MonoBehaviour
     [SerializeField] AudioClip laserDeflectSound;
     [SerializeField] AudioClip laserHitSound;
 
+    [Header("Physics")]
+    [SerializeField] LayerMask laserLayer;
+    [SerializeField] LayerMask enemyLayer;
+    [SerializeField] LayerMask playerLayer;
+
     private SpriteRenderer sr;
     private Rigidbody2D rb;
     private AudioSource audioSource;
     private float timeAlive = 0;
     private bool laserDestroyed = false;
+    private bool deflected = false;
 
     private void Awake()
     {
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Lasers"), LayerMask.NameToLayer("Enemy"), true);
         GetComponents();
     }
 
@@ -47,25 +54,23 @@ public class Laser : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.TryGetComponent<Health>(out Health health))
         {
-            Health playerHealth = collision.gameObject.GetComponent<Health>();
-            playerHealth.TakeDamage(damage);
+            if (collision.gameObject.TryGetComponent<Sword>(out Sword sword)) { return; }
+            health.TakeDamage(damage);
             DestroyLaser();
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.CompareTag("Mirror"))
         {
             Sword sword = collision.gameObject.GetComponent<Sword>();
             if (sword.inParryMode)
             {
-                sword.ResetParryCooldown();
-                audioSource.PlayOneShot(laserDeflectSound);
-                ReflectLaserVelocity(collision);
-                UpdateLaserRotation();
+                Deflect(collision, sword);
             }
             else
             {
@@ -77,6 +82,16 @@ public class Laser : MonoBehaviour
         {
             DestroyLaser();
         }
+    }
+
+    private void Deflect(Collision2D collision, Sword sword)
+    {
+        sword.ResetParryCooldown();
+        audioSource.PlayOneShot(laserDeflectSound);
+        ReflectLaserVelocity(collision);
+        UpdateLaserRotation();
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Lasers"), LayerMask.NameToLayer("Player"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Lasers"), LayerMask.NameToLayer("Enemy"), false);
     }
 
     private void UpdateLaserRotation()

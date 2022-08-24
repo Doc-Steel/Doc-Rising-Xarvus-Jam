@@ -18,9 +18,11 @@ public class Laser : MonoBehaviour
     private AudioSource audioSource;
     private float timeAlive = 0;
     private bool laserDestroyed = false;
+    private bool deflected = false;
 
     private void Awake()
     {
+        gameObject.layer = LayerMask.NameToLayer("HostileLaser");
         GetComponents();
     }
 
@@ -47,10 +49,10 @@ public class Laser : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.TryGetComponent<Health>(out Health health))
         {
-            Health playerHealth = collision.gameObject.GetComponent<Health>();
-            playerHealth.TakeDamage(damage);
+            if (collision.gameObject.TryGetComponent<Sword>(out Sword sword)) { return; }
+            health.TakeDamage(damage);
             DestroyLaser();
         }
     }
@@ -59,13 +61,11 @@ public class Laser : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Mirror"))
         {
+            gameObject.layer = LayerMask.NameToLayer("FriendlyLaser");
             Sword sword = collision.gameObject.GetComponent<Sword>();
             if (sword.inParryMode)
             {
-                sword.ResetParryCooldown();
-                audioSource.PlayOneShot(laserDeflectSound);
-                ReflectLaserVelocity(collision);
-                UpdateLaserRotation();
+                Deflect(collision, sword);
             }
             else
             {
@@ -77,6 +77,14 @@ public class Laser : MonoBehaviour
         {
             DestroyLaser();
         }
+    }
+
+    private void Deflect(Collision2D collision, Sword sword)
+    {
+        sword.ResetParryCooldown();
+        audioSource.PlayOneShot(laserDeflectSound);
+        ReflectLaserVelocity(collision);
+        UpdateLaserRotation();
     }
 
     private void UpdateLaserRotation()

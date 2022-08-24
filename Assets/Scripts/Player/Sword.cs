@@ -57,6 +57,7 @@ public class Sword : MonoBehaviour
 
     private void Update()
     {
+        
         if (!inParryMode)
         {
             timeUntilCanParry -= Time.deltaTime;

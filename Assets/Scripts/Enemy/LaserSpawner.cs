@@ -5,6 +5,7 @@ using UnityEngine;
 public class LaserSpawner : MonoBehaviour
 {
     [SerializeField] GameObject laserPrefab;
+    [SerializeField] Transform holder;
     [SerializeField] float spawnRate = 1f;
     private float timeSinceLastFire = 0;
     private Transform player;
@@ -15,6 +16,7 @@ public class LaserSpawner : MonoBehaviour
     }
     private void Update()
     {
+        holder.right = player.position - transform.position;
         transform.right = player.position - transform.position;
         timeSinceLastFire += Time.deltaTime;
         if (timeSinceLastFire > spawnRate)

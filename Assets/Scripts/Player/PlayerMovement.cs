@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float movingArmLength = 1.75f;
     private float currentArmLength;
     [SerializeField] GameObject sword;
+    [SerializeField] float swordDampSpeed = 10f;
+    private Vector2 swordVel = Vector2.zero;
 
     Rigidbody2D rb;
 
@@ -53,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     {
         SetGroundedStatus();
         SetSpeed();
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)) In && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
         }
@@ -81,9 +83,25 @@ public class PlayerMovement : MonoBehaviour
     private void SetSwordPosition()
     {
         AdjustArmLength();
+        Vector3 shoulderToMouseDirection = GetShoulderToMouseDirection();
+        if (shoulderToMouseDirection.magnitude < currentArmLength)
+        {
+            /*Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = 0;
+            sword.transform.position = mousePos;*/
+            return;
+        }
+        else
+        {
+            sword.transform.position = shoulderPivot.position + (currentArmLength * shoulderToMouseDirection.normalized);
+        }
+    }
+
+    private Vector3 GetShoulderToMouseDirection()
+    {
         Vector3 shoulderToMouseDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - shoulderPivot.position;
         shoulderToMouseDirection.z = 0;
-        sword.transform.position = shoulderPivot.position + (currentArmLength * shoulderToMouseDirection.normalized);
+        return shoulderToMouseDirection;
     }
 
     private void AdjustArmLength()

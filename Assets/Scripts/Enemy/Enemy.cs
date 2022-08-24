@@ -93,11 +93,11 @@ public class Enemy : MonoBehaviour
 
         if (force.x >= Mathf.Epsilon)
         {
-            graphics.localScale = new Vector3(-1f, 1f, 1f);
+            graphics.localScale = new Vector3(-1, graphics.localScale.y, graphics.localScale.z);
         }
         else if (force.x <= -Mathf.Epsilon)
         {
-            graphics.localScale = new Vector3(1f, 1f, 1f);
+            graphics.localScale = new Vector3(1, graphics.localScale.y, graphics.localScale.z);
         }
     }
 }

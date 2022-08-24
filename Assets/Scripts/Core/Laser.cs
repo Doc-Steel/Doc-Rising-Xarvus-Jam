@@ -13,11 +13,6 @@ public class Laser : MonoBehaviour
     [SerializeField] AudioClip laserDeflectSound;
     [SerializeField] AudioClip laserHitSound;
 
-    [Header("Physics")]
-    [SerializeField] LayerMask laserLayer;
-    [SerializeField] LayerMask enemyLayer;
-    [SerializeField] LayerMask playerLayer;
-
     private SpriteRenderer sr;
     private Rigidbody2D rb;
     private AudioSource audioSource;
@@ -27,7 +22,7 @@ public class Laser : MonoBehaviour
 
     private void Awake()
     {
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Lasers"), LayerMask.NameToLayer("Enemy"), true);
+        gameObject.layer = LayerMask.NameToLayer("HostileLaser");
         GetComponents();
     }
 
@@ -64,9 +59,9 @@ public class Laser : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.CompareTag("Mirror"))
         {
+            gameObject.layer = LayerMask.NameToLayer("FriendlyLaser");
             Sword sword = collision.gameObject.GetComponent<Sword>();
             if (sword.inParryMode)
             {
@@ -90,8 +85,6 @@ public class Laser : MonoBehaviour
         audioSource.PlayOneShot(laserDeflectSound);
         ReflectLaserVelocity(collision);
         UpdateLaserRotation();
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Lasers"), LayerMask.NameToLayer("Player"), true);
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Lasers"), LayerMask.NameToLayer("Enemy"), false);
     }
 
     private void UpdateLaserRotation()

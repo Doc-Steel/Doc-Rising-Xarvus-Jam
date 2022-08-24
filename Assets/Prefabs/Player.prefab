@@ -113,7 +113,8 @@ MonoBehaviour:
     m_Bits: 128
   groundCheckRadius: 0.5
   shoulderPivot: {fileID: 3900846431533219809}
-  armLength: 1.5
+  stationaryArmLength: 1.5
+  movingArmLength: 1.75
   sword: {fileID: 3900846431692308284}
 --- !u!61 &3900846430482915148
 BoxCollider2D:

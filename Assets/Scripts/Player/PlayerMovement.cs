@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     {
         SetGroundedStatus();
         SetSpeed();
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)) In && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
         }

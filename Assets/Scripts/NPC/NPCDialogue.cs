@@ -10,6 +10,12 @@ public class NPCDialogue : MonoBehaviour
 
     private bool inInteractRange = false;
 
+
+    private void Start()
+    {
+        if (!inInteractRange) { npcInteractImage.SetActive(false); }
+    }
+
     private void Update()
     {
         if (!inInteractRange) { return; }

@@ -63,6 +63,7 @@ public class Laser : MonoBehaviour
         {
             gameObject.layer = LayerMask.NameToLayer("FriendlyLaser");
             Sword sword = collision.gameObject.GetComponent<Sword>();
+            sr.color = Color.white;
             if (sword.inParryMode)
             {
                 Deflect(collision, sword);

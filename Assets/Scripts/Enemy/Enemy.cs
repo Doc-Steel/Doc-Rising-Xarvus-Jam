@@ -12,6 +12,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] float repeatRate = 0.5f;
     [SerializeField] Transform graphics;
     [SerializeField] float attackRange = 10f;
+    [SerializeField] PatrolPath patrolPath;
+    [SerializeField] float waypointDwelltime = 3f;
+    private int currentPatrolPointIndex = 0;
+    private float timeSinceLastWaypointReached = Mathf.Infinity;
 
     private Path path;
     private int currentWaypoint = 0;
@@ -32,6 +36,14 @@ public class Enemy : MonoBehaviour
         health.died += OnDeath;
     }
 
+    private void Start()
+    {
+        if (canFly)
+        {
+            rb.gravityScale = 0;
+        }
+    }
+
     private void OnDisable()
     {
         health.died -= OnDeath;
@@ -46,23 +58,56 @@ public class Enemy : MonoBehaviour
     {
         if (seeker.IsDone())
         {
-            seeker.StartPath(rb.position, target.position, OnPathComplete);
+            if (InAttackRangeOfPlayer())
+            {
+                seeker.StartPath(rb.position, target.position, OnPathComplete);
+            }
+            else if (patrolPath != null)
+            {
+                if (AtWaypoint())
+                {
+                    timeSinceLastWaypointReached = 0;
+                    CycleWaypoint();
+                }
+                if (timeSinceLastWaypointReached > waypointDwelltime)
+                {
+                    seeker.StartPath(rb.position, GetCurrentWaypoint(), OnPathComplete);
+                }
+                
+            }
+            
         }
+    }
+
+    private Vector3 GetCurrentWaypoint()
+    {
+        return patrolPath.GetWaypoint(currentPatrolPointIndex);
+    }
+
+    private void CycleWaypoint()
+    {
+        currentPatrolPointIndex = patrolPath.GetNextIndex(currentPatrolPointIndex);
+    }
+
+    private bool AtWaypoint()
+    {
+        float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWaypoint());
+        return distanceToWaypoint < waypointDistance;
     }
 
     private void Update()
     {
-        
         timeSincePathUpdate += Time.deltaTime;
-        float distanceToPlayer = Vector2.Distance(rb.position, target.position);
-        laser.canFire = distanceToPlayer <= attackRange;
-        if (distanceToPlayer <= attackRange && timeSincePathUpdate >= repeatRate)
+        timeSinceLastWaypointReached += Time.deltaTime;
+        laser.canFire = InAttackRangeOfPlayer();
+        if (timeSincePathUpdate >= repeatRate)
         {
             UpdatePath();
             timeSincePathUpdate = 0;
         }
     }
 
+    private bool InAttackRangeOfPlayer() => Vector2.Distance(rb.position, target.position) <= attackRange;
     private void OnPathComplete(Path p)
     {
         if (p.error) { return; }
@@ -74,7 +119,7 @@ public class Enemy : MonoBehaviour
     {
         if (path == null) { return; }
         reachedEndOfPath = currentWaypoint >= path.vectorPath.Count;
-        if (reachedEndOfPath) { OnPathComplete(path); }
+        if (reachedEndOfPath) { return; }
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed;
 
@@ -98,11 +143,11 @@ public class Enemy : MonoBehaviour
 
     private void SetFacing(Vector2 force)
     {
-        if (force.x >= Mathf.Epsilon)
+        if (rb.velocity.x >= 0.1f)
         {
             graphics.localScale = new Vector3(-1, graphics.localScale.y, graphics.localScale.z);
         }
-        else if (force.x <= -Mathf.Epsilon)
+        else if (rb.velocity.x <= -0.1f)
         {
             graphics.localScale = new Vector3(1, graphics.localScale.y, graphics.localScale.z);
         }

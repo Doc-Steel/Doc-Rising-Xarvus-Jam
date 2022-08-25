@@ -79,12 +79,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1965065165, guid: e564b07ffb84459499e6c43cd8bd84b8, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -1907935593, guid: 5fc0b09a74ac00849a791d4030900bbd, type: 3}
+  m_Color: {r: 1, g: 0.08218304, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.31640625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -107,15 +107,6 @@ MonoBehaviour:
   damage: 10
   laserDeflectSound: {fileID: 8300000, guid: 20d229f3d6de1e34fb92d9c66456ee1a, type: 3}
   laserHitSound: {fileID: 8300000, guid: f5ea48119e10767408636a473ee2b093, type: 3}
-  laserLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!50 &5387030870636154460
 Rigidbody2D:
   serializedVersion: 4
@@ -155,7 +146,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 0.31640625}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 0.31640625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -297,7 +288,7 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 0.31640625}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 0.31640625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

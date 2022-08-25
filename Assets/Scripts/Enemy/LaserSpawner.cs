@@ -7,10 +7,11 @@ public class LaserSpawner : MonoBehaviour
     [SerializeField] GameObject laserPrefab;
     [SerializeField] Transform holder;
     [SerializeField] float spawnRate = 1f;
+    [SerializeField] bool burstFire = false;
     private float timeSinceLastFire = 0;
     private Transform player;
     public bool canFire = false;
-
+    private bool firing = false;
     private void Start()
     {
         player = FindObjectOfType<PlayerMovement>().transform;
@@ -19,13 +20,43 @@ public class LaserSpawner : MonoBehaviour
     private void Update()
     {
         if (!canFire) { return; }
+        SetDirection();
+        timeSinceLastFire += Time.deltaTime;
+        if (timeSinceLastFire > spawnRate && !firing)
+        {
+            if (burstFire)
+            {
+                StartCoroutine(FireBurst());
+            }
+            else
+            {
+                Fire();
+            }
+
+        }
+    }
+
+    private void SetDirection()
+    {
         holder.right = player.position - transform.position;
         transform.right = player.position - transform.position;
-        timeSinceLastFire += Time.deltaTime;
-        if (timeSinceLastFire > spawnRate)
+    }
+
+    private void Fire()
+    {
+        Instantiate(laserPrefab, transform.position, transform.rotation);
+        timeSinceLastFire = 0;
+    }
+
+    private IEnumerator FireBurst()
+    {
+        firing = true;
+        for (int i = 0; i < 3; i++)
         {
             Instantiate(laserPrefab, transform.position, transform.rotation);
-            timeSinceLastFire = 0;
+            yield return new WaitForSeconds(0.2f);
         }
+        timeSinceLastFire = 0;
+        firing = false;
     }
 }

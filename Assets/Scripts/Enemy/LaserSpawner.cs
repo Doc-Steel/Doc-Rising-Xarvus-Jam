@@ -5,6 +5,7 @@ using UnityEngine;
 public class LaserSpawner : MonoBehaviour
 {
     [SerializeField] GameObject laserPrefab;
+    [SerializeField] bool tracksPlayer = true;
     [SerializeField] Transform holder;
     [SerializeField] float spawnRate = 1f;
     [SerializeField] bool burstFire = false;
@@ -20,7 +21,11 @@ public class LaserSpawner : MonoBehaviour
     private void Update()
     {
         if (!canFire) { return; }
-        SetDirection();
+        if (tracksPlayer)
+        {
+            SetDirection();
+        }
+        
         timeSinceLastFire += Time.deltaTime;
         if (timeSinceLastFire > spawnRate && !firing)
         {

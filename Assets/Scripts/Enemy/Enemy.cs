@@ -9,11 +9,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] float speed = 200f;
     [SerializeField] float waypointDistance = 3f;
     [SerializeField] bool canFly;
+    [SerializeField] bool canMove = true;
     [SerializeField] float repeatRate = 0.5f;
     [SerializeField] Transform graphics;
     [SerializeField] float attackRange = 10f;
     [SerializeField] PatrolPath patrolPath;
     [SerializeField] float waypointDwelltime = 3f;
+
     private int currentPatrolPointIndex = 0;
     private float timeSinceLastWaypointReached = Mathf.Infinity;
 
@@ -42,6 +44,7 @@ public class Enemy : MonoBehaviour
         {
             rb.gravityScale = 0;
         }
+        if (!canMove) { laser.canFire = true; }
     }
 
     private void OnDisable()
@@ -97,6 +100,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (!canMove) { return; }
         timeSincePathUpdate += Time.deltaTime;
         timeSinceLastWaypointReached += Time.deltaTime;
         laser.canFire = InAttackRangeOfPlayer();

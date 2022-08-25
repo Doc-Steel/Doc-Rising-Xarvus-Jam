@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] bool canFly;
     [SerializeField] float repeatRate = 0.5f;
     [SerializeField] Transform graphics;
+    [SerializeField] float attackRange = 10f;
 
     private Path path;
     private int currentWaypoint = 0;
@@ -18,6 +19,8 @@ public class Enemy : MonoBehaviour
     private Seeker seeker;
     private Rigidbody2D rb;
     private Health health;
+    private LaserSpawner laser;
+    private float timeSincePathUpdate = Mathf.Infinity;
     
 
     private void Awake()
@@ -25,6 +28,7 @@ public class Enemy : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         health = GetComponent<Health>();
+        laser = GetComponentInChildren<LaserSpawner>();
         health.died += OnDeath;
     }
 
@@ -38,19 +42,25 @@ public class Enemy : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void Start()
-    {
-        InvokeRepeating("UpdatePath", 0f, repeatRate);
-        
-    }
-
     private void UpdatePath()
     {
         if (seeker.IsDone())
         {
             seeker.StartPath(rb.position, target.position, OnPathComplete);
         }
+    }
+
+    private void Update()
+    {
         
+        timeSincePathUpdate += Time.deltaTime;
+        float distanceToPlayer = Vector2.Distance(rb.position, target.position);
+        laser.canFire = distanceToPlayer <= attackRange;
+        if (distanceToPlayer <= attackRange && timeSincePathUpdate >= repeatRate)
+        {
+            UpdatePath();
+            timeSincePathUpdate = 0;
+        }
     }
 
     private void OnPathComplete(Path p)
@@ -63,16 +73,8 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         if (path == null) { return; }
-        if (currentWaypoint >= path.vectorPath.Count)
-        {
-            reachedEndOfPath = true;
-            return;
-        }
-        else
-        {
-            reachedEndOfPath = false;
-        }
-
+        reachedEndOfPath = currentWaypoint >= path.vectorPath.Count;
+        if (reachedEndOfPath) { OnPathComplete(path); }
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed;
 
@@ -91,6 +93,11 @@ public class Enemy : MonoBehaviour
             currentWaypoint++;
         }
 
+        SetFacing(force);
+    }
+
+    private void SetFacing(Vector2 force)
+    {
         if (force.x >= Mathf.Epsilon)
         {
             graphics.localScale = new Vector3(-1, graphics.localScale.y, graphics.localScale.z);
@@ -99,5 +106,11 @@ public class Enemy : MonoBehaviour
         {
             graphics.localScale = new Vector3(1, graphics.localScale.y, graphics.localScale.z);
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

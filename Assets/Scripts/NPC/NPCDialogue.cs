@@ -8,13 +8,18 @@ public class NPCDialogue : MonoBehaviour
     public DialogueManager npcManager;
     public List<string> npcConvo = new List<string>();
 
-    private bool isInside = false;
+    private bool inInteractRange = false;
 
     private void Update()
     {
-        if (isInside)
+        if (!inInteractRange) { return; }
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (npcManager.InDialogue)
+            {
+                npcManager.Next();
+            }
+            else
             {
                 npcManager.StartDialogue(npcConvo);
             }
@@ -24,18 +29,16 @@ public class NPCDialogue : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            isInside = true;
-            npcInteractImage.SetActive(true);
-            Debug.Log("Player is inside NPC Range");
-        }
+        if (!other.CompareTag("Player")) { return; }
+        inInteractRange = true;
+        npcInteractImage.SetActive(true);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        isInside = false;
+        if (!other.CompareTag("Player")) { return; }
+        inInteractRange = false;
         npcInteractImage.SetActive(false);
     }
-    
+
 }

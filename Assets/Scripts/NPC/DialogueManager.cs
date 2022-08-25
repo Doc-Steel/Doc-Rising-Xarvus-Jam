@@ -9,12 +9,10 @@ public class DialogueManager : MonoBehaviour
     //public GameObject interactCanvas;
     public TextMeshProUGUI dialogText;
 
-    public bool inDialogue;
+    public bool InDialogue { get; private set; } = false;
 
     private List<string> conversation;
     public int convoIndex;
-
-
 
     public void Start()
     {
@@ -22,51 +20,38 @@ public class DialogueManager : MonoBehaviour
         //interactCanvas.SetActive(false);
     }
 
-    public void Update()
-    {
-        CheckEnd();
-
-    }
-
     public void StartDialogue(List<string> convo)
     {
-
+        InDialogue = true;
         convoIndex = 0;
         conversation = new List<string>(convo);
         dialogPanel.SetActive(true);
 
-        ShowText();
+        UpdateText();
     }
 
-    public void StopDialog()
+    public void StopDialogue()
     {
-
-
+        InDialogue = false;
         convoIndex = 0;
         dialogPanel.SetActive(false);
-
     }
 
-    public void ShowText()
+    public void UpdateText()
     {
         dialogText.text = conversation[convoIndex];
     }
 
     public void Next()
     {
-        if (convoIndex < conversation.Count)
+        if (convoIndex < conversation.Count - 1)
         {
             convoIndex++;
-            dialogText.text = "";
-            ShowText();
+            UpdateText();
         }
-    }
-
-    public void CheckEnd()
-    {
-        if (convoIndex == conversation?.Count)
+        else
         {
-            StopDialog();
+            StopDialogue();
         }
     }
 }

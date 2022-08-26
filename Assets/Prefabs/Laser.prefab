@@ -105,8 +105,9 @@ MonoBehaviour:
   speed: 10
   lifeTime: 10
   damage: 10
-  laserDeflectSound: {fileID: 8300000, guid: 20d229f3d6de1e34fb92d9c66456ee1a, type: 3}
+  laserDeflectSound: {fileID: 8300000, guid: a34a3aa75a8cd3c4b8bc7be6501fb057, type: 3}
   laserHitSound: {fileID: 8300000, guid: f5ea48119e10767408636a473ee2b093, type: 3}
+  shootSound: {fileID: 8300000, guid: ec7f5e9fd3c46624fb8c0828e5613914, type: 3}
 --- !u!50 &5387030870636154460
 Rigidbody2D:
   serializedVersion: 4

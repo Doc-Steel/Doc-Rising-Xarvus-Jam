@@ -149,11 +149,11 @@ public class Enemy : MonoBehaviour
     {
         if (rb.velocity.x >= 0.1f)
         {
-            graphics.localScale = new Vector3(-1, graphics.localScale.y, graphics.localScale.z);
+            graphics.GetComponent<SpriteRenderer>().flipX = false;
         }
         else if (rb.velocity.x <= -0.1f)
         {
-            graphics.localScale = new Vector3(1, graphics.localScale.y, graphics.localScale.z);
+            graphics.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
 

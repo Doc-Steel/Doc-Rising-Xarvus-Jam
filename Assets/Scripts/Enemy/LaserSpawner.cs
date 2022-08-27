@@ -45,7 +45,11 @@ public class LaserSpawner : MonoBehaviour
 
     private void SetDirection()
     {
-        holder.right = player.position - transform.position;
+        if (holder != null)
+        {
+            holder.right = player.position - transform.position;
+        }
+        
         transform.right = player.position - transform.position;
     }
 

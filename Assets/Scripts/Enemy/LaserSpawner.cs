@@ -9,17 +9,12 @@ public class LaserSpawner : MonoBehaviour
     [SerializeField] Transform holder;
     [SerializeField] float spawnRate = 1f;
     [SerializeField] bool burstFire = false;
-    [SerializeField] AudioClip shootSound;
-    private AudioSource audioSource;
+
     private float timeSinceLastFire = 0;
     private Transform player;
     public bool canFire = false;
     private bool firing = false;
 
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
     private void Start()
     {
         player = FindObjectOfType<PlayerMovement>().transform;
@@ -50,7 +45,11 @@ public class LaserSpawner : MonoBehaviour
 
     private void SetDirection()
     {
-        holder.right = player.position - transform.position;
+        if (holder != null)
+        {
+            holder.right = player.position - transform.position;
+        }
+        
         transform.right = player.position - transform.position;
     }
 

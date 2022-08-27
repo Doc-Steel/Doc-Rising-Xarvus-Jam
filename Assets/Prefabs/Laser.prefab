@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b5653fd35e8d14394ec0ba03be57b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 15
   lifeTime: 10
   damage: 10
   laserDeflectSound: {fileID: 8300000, guid: a34a3aa75a8cd3c4b8bc7be6501fb057, type: 3}

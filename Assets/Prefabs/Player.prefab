@@ -42,9 +42,9 @@ GameObject:
   - component: {fileID: 3900846430482915151}
   - component: {fileID: 3900846430482915122}
   - component: {fileID: 6035144341980689023}
-  - component: {fileID: 3900846430482915148}
   - component: {fileID: 1864931879}
   - component: {fileID: 1864931880}
+  - component: {fileID: 1792650397}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -116,32 +116,7 @@ MonoBehaviour:
   stationaryArmLength: 1.5
   movingArmLength: 1.75
   sword: {fileID: 3900846431692308284}
---- !u!61 &3900846430482915148
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3900846430482915150}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2}
-  m_EdgeRadius: 0
+  swordDampSpeed: 10
 --- !u!81 &1864931879
 AudioListener:
   m_ObjectHideFlags: 0
@@ -164,6 +139,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <BaseHealth>k__BackingField: 50
   iSeconds: 0.1
+--- !u!70 &1792650397
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3900846430482915150}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
 --- !u!1 &3900846431027760655
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +285,7 @@ GameObject:
   - component: {fileID: 494397986}
   - component: {fileID: 494397985}
   - component: {fileID: 494397991}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: Sword
   m_TagString: Mirror
   m_Icon: {fileID: 0}

@@ -111,7 +111,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  groundCheckRadius: 0.5
+  groundCheckRadius: 0.41
   shoulderPivot: {fileID: 3900846431533219809}
   stationaryArmLength: 1.5
   movingArmLength: 1.75
@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f331df55a33004ab2c1f5b24f3be5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parryWindow: 0.325
+  parryWindow: 0.4
   parryCooldown: 0.8
   energyRegenDelay: 3
   swordParrySound: {fileID: 8300000, guid: bb263aba6bccbba488d8648e15e6bdce, type: 3}

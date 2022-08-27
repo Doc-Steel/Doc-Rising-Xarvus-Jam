@@ -9,15 +9,23 @@ public class LaserSpawner : MonoBehaviour
     [SerializeField] Transform holder;
     [SerializeField] float spawnRate = 1f;
     [SerializeField] bool burstFire = false;
-
+    [SerializeField] ParticleSystem chargeParticles;
+    [SerializeField] AudioClip chargeSound;
+    private AudioSource audioSource;
     private float timeSinceLastFire = 0;
     private Transform player;
     public bool canFire = false;
     private bool firing = false;
 
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void Start()
     {
         player = FindObjectOfType<PlayerMovement>().transform;
+        chargeParticles.Stop();
     }
 
     private void Update()
@@ -37,7 +45,7 @@ public class LaserSpawner : MonoBehaviour
             }
             else
             {
-                Fire();
+                StartCoroutine(Charge());
             }
 
         }
@@ -61,6 +69,7 @@ public class LaserSpawner : MonoBehaviour
 
     private IEnumerator FireBurst()
     {
+        
         firing = true;
         for (int i = 0; i < 3; i++)
         {
@@ -68,6 +77,19 @@ public class LaserSpawner : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
         timeSinceLastFire = 0;
+        firing = false;
+    }
+
+    private IEnumerator Charge()
+    {
+        firing = true;
+        chargeParticles.Emit(20);
+        audioSource.PlayOneShot(chargeSound);
+        while (chargeParticles.isPlaying && audioSource.isPlaying)
+        {
+            yield return null;
+        }
+        Fire();
         firing = false;
     }
 }

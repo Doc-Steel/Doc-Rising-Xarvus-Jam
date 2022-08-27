@@ -424,26 +424,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Processor (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 1645045145522294596, guid: 699c739c3e3dfae4bb624bf4f08fdcd2, type: 3}
-      propertyPath: brokenSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 96edbe0a92f6cb440b830420cb1fc203, type: 3}
-    - target: {fileID: 1645045145522294596, guid: 699c739c3e3dfae4bb624bf4f08fdcd2, type: 3}
-      propertyPath: workingSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 92e36e0e0235a6b4fb334b4f917bc255, type: 3}
-    - target: {fileID: 1645045145522294596, guid: 699c739c3e3dfae4bb624bf4f08fdcd2, type: 3}
-      propertyPath: overclockSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 84b93aa0dc6e97a41a71f451b0e8d0a3, type: 3}
-    - target: {fileID: 1645045145522294596, guid: 699c739c3e3dfae4bb624bf4f08fdcd2, type: 3}
-      propertyPath: overclockDuration
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1645045145522294597, guid: 699c739c3e3dfae4bb624bf4f08fdcd2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 92e36e0e0235a6b4fb334b4f917bc255, type: 3}
     - target: {fileID: 1645045145522294598, guid: 699c739c3e3dfae4bb624bf4f08fdcd2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -488,7 +468,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1028613025, guid: 699c739c3e3dfae4bb624bf4f08fdcd2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 699c739c3e3dfae4bb624bf4f08fdcd2, type: 3}
 --- !u!114 &779121811 stripped
 MonoBehaviour:
@@ -514,7 +495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1645045145522294596, guid: 699c739c3e3dfae4bb624bf4f08fdcd2, type: 3}
       propertyPath: overclockDuration
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1645045145522294598, guid: 699c739c3e3dfae4bb624bf4f08fdcd2, type: 3}
       propertyPath: m_RootOrder
@@ -1041,7 +1022,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 13e7d85f623c9b54fa234c8b4fb36835, type: 3}
     - target: {fileID: 1645045145522294596, guid: 699c739c3e3dfae4bb624bf4f08fdcd2, type: 3}
       propertyPath: overclockDuration
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1645045145522294597, guid: 699c739c3e3dfae4bb624bf4f08fdcd2, type: 3}
       propertyPath: m_Sprite
@@ -7326,6 +7307,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8003988220472713428, guid: 9cc242deca43c8440bcd7130dbde12dd, type: 3}
+      propertyPath: overclockRate
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8003988220472713428, guid: 9cc242deca43c8440bcd7130dbde12dd, type: 3}
       propertyPath: processors.Array.data[0]
       value: 

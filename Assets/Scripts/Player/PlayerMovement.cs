@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float airborneSlowFactor = 0.75f;
     [SerializeField] float jumpSpeed = 10f;
     private float speed;
+    [SerializeField] Animator animator;
+    [SerializeField] SpriteRenderer sr;
 
     [Header("Jump")]
     [SerializeField] Transform groundCheck;
@@ -34,11 +36,18 @@ public class PlayerMovement : MonoBehaviour
         health = GetComponent<Health>();
         rb = GetComponent<Rigidbody2D>();
         health.died += OnPlayerDeath;
+        health.changed += OnHurt;
+    }
+
+    private void OnHurt()
+    {
+        animator.SetTrigger("hurt");
     }
 
     private void OnDisable()
     {
         health.died -= OnPlayerDeath;
+        health.changed -= OnHurt;
     }
 
     private void OnPlayerDeath()
@@ -58,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             rb.AddForce(-Vector2.left * speed);
+            
         }
         if (Input.GetKey(KeyCode.A))
         {
@@ -76,6 +86,32 @@ public class PlayerMovement : MonoBehaviour
         }
         SetSwordPosition();
         SetSwordAngle();
+        SetSpriteDirection();
+        SetAnimations();
+    }
+
+    private void SetAnimations()
+    {
+        if (rb.velocity.x >= 0.1f || rb.velocity.x <= -0.1f)
+        {
+            animator.SetBool("walking", true);
+        }
+        else
+        {
+            animator.SetBool("walking", false);
+        }
+    }
+
+    private void SetSpriteDirection()
+    {
+        if (rb.velocity.x >= 0.1f)
+        {
+            sr.flipX = false;
+        }
+        else if (rb.velocity.x <= -0.1f)
+        {
+            sr.flipX = true;
+        }
     }
 
     private void SetSpeed()

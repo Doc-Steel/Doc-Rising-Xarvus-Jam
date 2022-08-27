@@ -107,6 +107,8 @@ MonoBehaviour:
   groundMoveSpeed: 100
   airborneSlowFactor: 0.75
   jumpSpeed: 60
+  animator: {fileID: 5938205963832682427}
+  sr: {fileID: 3900846431027760653}
   groundCheck: {fileID: 313529225}
   groundLayer:
     serializedVersion: 2

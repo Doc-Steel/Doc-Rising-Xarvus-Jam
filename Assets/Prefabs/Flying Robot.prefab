@@ -47,7 +47,7 @@ MonoBehaviour:
   laserPrefab: {fileID: 843466218355913472, guid: 407d614a80fab87499ca820fecf76302, type: 3}
   tracksPlayer: 1
   holder: {fileID: 0}
-  spawnRate: 1
+  spawnRate: 0.75
   burstFire: 0
   canFire: 0
 --- !u!1 &6837938869118637122
@@ -60,6 +60,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6837938869118637125}
   - component: {fileID: 6837938869118637124}
+  - component: {fileID: 676499272}
   m_Layer: 10
   m_Name: Robot Sprite
   m_TagString: Untagged
@@ -135,6 +136,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &676499272
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6837938869118637122}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b3a83d217b29684993e69a5ec4704c8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6837938870034798824
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +186,7 @@ Transform:
   m_GameObject: {fileID: 6837938870034798824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6837938869118637125}
@@ -235,7 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 10
-  waypointDistance: 3
+  waypointDistance: 5
   canFly: 1
   canMove: 1
   repeatRate: 0.5

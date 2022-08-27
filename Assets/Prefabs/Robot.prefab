@@ -240,7 +240,7 @@ MonoBehaviour:
   canMove: 1
   repeatRate: 0.5
   graphics: {fileID: 6837938869118637125}
-  attackRange: 7
+  attackRange: 10
   patrolPath: {fileID: 0}
   waypointDwelltime: 1
 --- !u!114 &8094701031376073177

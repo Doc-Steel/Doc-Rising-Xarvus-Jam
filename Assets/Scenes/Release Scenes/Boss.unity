@@ -6903,7 +6903,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f8b76c6d13974e2488699e604e7c6f43, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f18aba43f98ab794cbd5c39abba0436e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -7307,6 +7307,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8003988220279634710, guid: 9cc242deca43c8440bcd7130dbde12dd, type: 3}
+      propertyPath: chargeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6cf8629967edb8a409838c287c246c4b, type: 3}
     - target: {fileID: 8003988220472713428, guid: 9cc242deca43c8440bcd7130dbde12dd, type: 3}
       propertyPath: overclockRate
       value: 30
@@ -7371,5 +7375,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 8003988220775970254, guid: 9cc242deca43c8440bcd7130dbde12dd, type: 3}
+      propertyPath: chargeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6cf8629967edb8a409838c287c246c4b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cc242deca43c8440bcd7130dbde12dd, type: 3}

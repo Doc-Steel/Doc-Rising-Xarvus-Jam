@@ -9,7 +9,7 @@ public class LaserSpawner : MonoBehaviour
     [SerializeField] Transform holder;
     [SerializeField] float spawnRate = 1f;
     [SerializeField] bool burstFire = false;
-
+    [SerializeField] ParticleSystem chargeParticles;
     private float timeSinceLastFire = 0;
     private Transform player;
     public bool canFire = false;
@@ -18,6 +18,7 @@ public class LaserSpawner : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<PlayerMovement>().transform;
+        chargeParticles.Stop();
     }
 
     private void Update()
@@ -37,7 +38,7 @@ public class LaserSpawner : MonoBehaviour
             }
             else
             {
-                Fire();
+                StartCoroutine(Charge());
             }
 
         }
@@ -68,6 +69,18 @@ public class LaserSpawner : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
         timeSinceLastFire = 0;
+        firing = false;
+    }
+
+    private IEnumerator Charge()
+    {
+        firing = true;
+        chargeParticles.Emit(20);
+        while (chargeParticles.isPlaying)
+        {
+            yield return null;
+        }
+        Fire();
         firing = false;
     }
 }

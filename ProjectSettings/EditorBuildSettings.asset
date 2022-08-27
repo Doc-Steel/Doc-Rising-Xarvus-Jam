@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Release Scenes/Boss.unity
     guid: 6976310b8c356344b9bf3c769b3656ee
+  - enabled: 1
+    path: Assets/Scenes/Release Scenes/Intro.unity
+    guid: aca98889e68216048bf36d3e13491cac
   m_configObjects: {}

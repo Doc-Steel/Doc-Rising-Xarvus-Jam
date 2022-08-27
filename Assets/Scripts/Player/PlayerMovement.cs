@@ -26,11 +26,24 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 swordVel = Vector2.zero;
 
     Rigidbody2D rb;
+    private Health health;
+    private bool isDead = false;
 
     private void Awake()
     {
+        health = GetComponent<Health>();
         rb = GetComponent<Rigidbody2D>();
-        
+        health.died += OnPlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        health.died -= OnPlayerDeath;
+    }
+
+    private void OnPlayerDeath()
+    {
+        isDead = true;
     }
 
     private void Start()
@@ -41,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDead) { return; }
         if (Input.GetKey(KeyCode.D))
         {
             rb.AddForce(-Vector2.left * speed);
@@ -55,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
     {
         SetGroundedStatus();
         SetSpeed();
+        if (isDead) { return; }
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)) && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);

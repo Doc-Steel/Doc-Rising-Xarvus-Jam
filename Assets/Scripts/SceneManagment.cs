@@ -11,6 +11,25 @@ public class SceneManagment : MonoBehaviour
     [SerializeField] float levelTransitionTime = 2f;
     [SerializeField] float deathFadeTime = 1f;
     [SerializeField] MusicPlayer mp;
+    private PlayerMovement player;
+    private Health playerHealth;
+
+    private void Awake()
+    {
+        player = FindObjectOfType<PlayerMovement>();
+        playerHealth = player.gameObject.GetComponent<Health>();
+        playerHealth.died += OnPlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        playerHealth.died -= OnPlayerDeath;
+    }
+
+    private void OnPlayerDeath()
+    {
+        StartCoroutine(RestartLevel());
+    }
 
     private void Start()
     {

@@ -12,6 +12,7 @@ public class Laser : MonoBehaviour
     [Header("Audio")]
     [SerializeField] AudioClip laserDeflectSound;
     [SerializeField] AudioClip laserHitSound;
+    [SerializeField] AudioClip shootSound;
 
     private SpriteRenderer sr;
     private Rigidbody2D rb;
@@ -28,6 +29,7 @@ public class Laser : MonoBehaviour
 
     private void Start()
     {
+        audioSource.PlayOneShot(shootSound);
         rb.velocity = transform.right * speed;
     }
 

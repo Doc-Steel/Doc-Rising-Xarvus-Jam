@@ -5,13 +5,16 @@ using UnityEngine;
 public class LaserSpawner : MonoBehaviour
 {
     [SerializeField] GameObject laserPrefab;
+    [SerializeField] bool tracksPlayer = true;
     [SerializeField] Transform holder;
     [SerializeField] float spawnRate = 1f;
     [SerializeField] bool burstFire = false;
+
     private float timeSinceLastFire = 0;
     private Transform player;
     public bool canFire = false;
     private bool firing = false;
+
     private void Start()
     {
         player = FindObjectOfType<PlayerMovement>().transform;
@@ -20,7 +23,11 @@ public class LaserSpawner : MonoBehaviour
     private void Update()
     {
         if (!canFire) { return; }
-        SetDirection();
+        if (tracksPlayer)
+        {
+            SetDirection();
+        }
+        
         timeSinceLastFire += Time.deltaTime;
         if (timeSinceLastFire > spawnRate && !firing)
         {
@@ -38,7 +45,11 @@ public class LaserSpawner : MonoBehaviour
 
     private void SetDirection()
     {
-        holder.right = player.position - transform.position;
+        if (holder != null)
+        {
+            holder.right = player.position - transform.position;
+        }
+        
         transform.right = player.position - transform.position;
     }
 

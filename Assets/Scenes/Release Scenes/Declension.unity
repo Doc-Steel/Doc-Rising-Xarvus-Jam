@@ -18415,8 +18415,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3900846431027759602, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900846431027759602, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900846431027760653, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 933572873, guid: ba64182c48318fc4a81312da08286e2f, type: 3}
+    - target: {fileID: 6035144341980689023, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1864931873}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
+--- !u!95 &1864931873 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5938205963832682427, guid: 72cfd9457dc5d064da6aad02474aa62e, type: 3}
+  m_PrefabInstance: {fileID: 1864931872}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1920534477
 PrefabInstance:
   m_ObjectHideFlags: 0

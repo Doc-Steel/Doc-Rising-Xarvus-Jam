@@ -41,7 +41,7 @@ public class SceneManagment : MonoBehaviour
         cgf.FadeIn(deathFadeTime);
         yield return new WaitForSeconds(deathFadeTime);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }    
+    }
 
     public IEnumerator LoadNextLevel(string sceneName)
     {

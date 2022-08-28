@@ -8,7 +8,7 @@ public class LaserSpawner : MonoBehaviour
     [SerializeField] bool tracksPlayer = true;
     [SerializeField] Transform holder;
     [SerializeField] float spawnRate = 1f;
-    [SerializeField] bool burstFire = false;
+    public bool burstFire = false;
     [SerializeField] ParticleSystem chargeParticles;
     [SerializeField] AudioClip chargeSound;
     private AudioSource audioSource;
@@ -69,8 +69,14 @@ public class LaserSpawner : MonoBehaviour
 
     private IEnumerator FireBurst()
     {
-        
+
         firing = true;
+        chargeParticles.Emit(20);
+        audioSource.PlayOneShot(chargeSound);
+        while (chargeParticles.isPlaying && audioSource.isPlaying)
+        {
+            yield return null;
+        }
         for (int i = 0; i < 3; i++)
         {
             Instantiate(laserPrefab, transform.position, transform.rotation);

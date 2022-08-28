@@ -76,4 +76,9 @@ public class Health : MonoBehaviour
             spriteRenderers[i].color = baseColors[i];
         }
     }
+
+    public void PreventDamage()
+    {
+        IsDead = true;
+    }
 }

@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Release Scenes/Menu.unity
+    guid: 8e371e81f17280148be5807e18665d3b
+  - enabled: 1
+    path: Assets/Scenes/Release Scenes/Intro.unity
+    guid: aca98889e68216048bf36d3e13491cac
+  - enabled: 1
     path: Assets/Scenes/Release Scenes/Ascension.unity
     guid: 006eaf18ab89b694c951061ce53d88ef
   - enabled: 1
@@ -17,7 +23,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Release Scenes/Boss.unity
     guid: 6976310b8c356344b9bf3c769b3656ee
-  - enabled: 1
-    path: Assets/Scenes/Release Scenes/Intro.unity
-    guid: aca98889e68216048bf36d3e13491cac
   m_configObjects: {}

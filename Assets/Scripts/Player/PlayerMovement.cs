@@ -167,6 +167,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void OnVictory()
+    {
+        isDead = true;
+        health.PreventDamage();
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
